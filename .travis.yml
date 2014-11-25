@@ -1,0 +1,16 @@
+language: python
+python:
+- '2.7'
+before_script:
+- git clone https://github.com/mozilla-b2g/gaia.git
+- chmod 755 push_gh_pages.sh
+install:
+- pip install -r requierments.txt
+script:
+- python manifest.py --manifest=gaia/tests/python/gaia-ui-tests/gaiatest/tests/manifest.ini
+after_success:
+- ./push_gh_pages.sh
+env:
+  global:
+  - GH_REF: github.com/bebef1987/gaia-UI-tests-status-mapping.git
+  - secure: ETFTr/gQ5ehnUIXFMK+UzOWGK/klm4P3EEGpJXfAzmkoflMTe5Y0DJue3DUkicP2Y8sg2BhGVW0IvGyBzByFxhqh5M/rGucaCzc9SoTLMhDl8059BsqNW4XUuMGQqiTtYvG1Ki1hmPYL2Y+lKp8gtHIM0HkRr4YAHjAW+Wgm31k=
