@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import os
+import re
 import sys
 import time
 
@@ -72,7 +73,7 @@ class ManifestParser():
                 flame.tooltip = 'Test is expected to pass'
 
         if desktop_test:
-            if desktop_test.has_key('skip-if') and 'device == "desktop"' in desktop_test['skip-if']:
+            if desktop_test.has_key('skip-if') and re.match('device\s*==\s*"desktop"', desktop_test['skip-if']):
                 pass
             elif desktop_test['expected'] == 'fail':
                 desktop.status = 'XFailed'
